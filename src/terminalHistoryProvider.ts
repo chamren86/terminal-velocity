@@ -1,26 +1,7 @@
 import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
-
-export function cleanTerminalOutput(str: string): string {
-    if (!str) return '';
-    
-    let cleaned = str;
-    
-    cleaned = cleaned.replace(/\]633;C/g, '');
-    cleaned = cleaned.replace(/\u001b\][0-9]+(?:;[^\u001b\u0007]*)?[\u001b\\\u0007]/g, '');
-    cleaned = cleaned.replace(/\u001b\[[0-9;]*[a-zA-Z]/g, '');
-    cleaned = cleaned.replace(/\u001b/g, '');
-    cleaned = cleaned.replace(/\u0007/g, '');
-    cleaned = cleaned.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '');
-    cleaned = cleaned.replace(/\[\d+m/g, '');
-    cleaned = cleaned.replace(/\[\d+;\d+m/g, '');
-    cleaned = cleaned.replace(/\[\d+;\d+;\d+m/g, '');
-    cleaned = cleaned.replace(/\[0m/g, '');
-    
-    const words = cleaned.split(/\s+/).filter(word => word.length > 0 && !word.match(/^\d+$/));
-    return words.join(' ');
-}
+import { cleanTerminalOutput } from './cleaner';
 
 export class CommandHistoryItem extends vscode.TreeItem {
     private rawOutput: string = '';
