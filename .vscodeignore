@@ -1,11 +1,46 @@
+# Test files (not needed in production)
+out/test/**
+src/test/**
+test/**
+*.test.js
+*.test.ts
+
+# Development files
+node_modules/**
+.git/**
 .vscode/**
 .vscode-test/**
-src/**
-.gitignore
-.yarnrc
-vsc-extension-quickstart.md
-**/tsconfig.json
-**/eslint.config.mjs
-**/*.map
-**/*.ts
-**/.vscode-test.*
+scripts/**
+!scripts/*.md
+
+# Build outputs (keep only necessary)
+# Exclude all out/ except specific files
+out/**
+!out/extension.js
+!out/extension.js.map
+!out/cleaner.js
+!out/cleaner.js.map
+!out/security.js
+!out/security.js.map
+!out/privacyCommands.js
+!out/privacyCommands.js.map
+!out/terminalHistoryProvider.js
+!out/terminalHistoryProvider.js.map
+
+# Documentation (keep README and LICENSE)
+!README.md
+!LICENSE.md
+CHANGELOG.md
+RELEASE-NOTES.md
+ROADMAP/**
+docs/**
+
+# Temporary files
+*.log
+*.tmp
+.DS_Store
+
+# Binary files
+bin/
+*.vsix
+node_modules/

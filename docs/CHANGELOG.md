@@ -1,25 +1,33 @@
 # Changelog
 
+All notable changes to the "terminal-history-outline" extension will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
 ## [0.4.1] - 2026-06-17
 
 ### Added
-- Pre-commit validation script with `npm run precommit`
-- Pre-push validation script with `npm run prepush`
-- Unit test script with `npm run test:unit`
-- Full test script with `npm run test:full`
+- Pre-commit validation script (`npm run precommit`)
+- Pre-push validation script (`npm run prepush`)
+- Unit test script (`npm run test:unit`)
+- Full test script (`npm run test:full`)
 - `act` integration for local GitHub Actions testing
-- Test scripts documentation in README
+- VSIX packaging support with `.vscodeignore`
+- Test documentation
 
 ### Changed
 - Migrated from mocha to vitest for better ESM support
 - Improved security module logic in `shouldRedactOrBlock`
 - Updated test scripts to use vitest
 - Improved Docker detection in precommit script
+- Cleaner VSIX packaging
 
 ### Fixed
 - Security test failures related to SSH key redaction
-- ShouldRedactOrBlock function logic order
+- shouldRedactOrBlock function logic order
 - Detection disabled test case
+- VSIX packaging security warnings
 
 ## [0.4.0] - 2026-06-17
 
