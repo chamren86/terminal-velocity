@@ -242,7 +242,6 @@ export async function handleSensitiveCommand(
 export function shouldRedactOrBlock(command: string, config?: SecurityConfig): { action: 'proceed' | 'redact' | 'block', reason: string } {
     const cfg = config || getSecurityConfig();
     
-    // Check detection disabled first
     if (!cfg.detectionEnabled) {
         return { action: 'proceed', reason: 'Detection disabled' };
     }
@@ -252,7 +251,6 @@ export function shouldRedactOrBlock(command: string, config?: SecurityConfig): {
         return { action: 'proceed', reason: 'No sensitive data detected' };
     }
     
-    // Check excluded commands BEFORE redaction level
     if (isExcludedCommand(command, cfg)) {
         return { action: 'block', reason: 'Command excluded by user settings' };
     }
