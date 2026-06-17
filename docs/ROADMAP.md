@@ -1,20 +1,39 @@
 # Terminal History Outline - Public Roadmap
 
 ## Current Status
-**Version**: 0.3.0
-**Release Date**: 2026-06-16
-**Focus**: Testing infrastructure and code quality
+**Version**: 0.4.1
+**Release Date**: 2026-06-17
+**Focus**: Security, Testing, and Developer Experience
 
 ---
 
 ## ✅ Completed Releases
+
+### v0.4.1 - Testing Infrastructure & Pre-commit (2026-06-17)
+**Focus**: Developer experience and testing
+
+- ✅ Migrated from mocha to vitest
+- ✅ Pre-commit validation script
+- ✅ Pre-push validation script
+- ✅ `act` integration for GitHub Actions simulation
+- ✅ 49 passing tests
+- ✅ Improved security module logic
+
+### v0.4.0 - Security & Privacy (2026-06-17)
+**Focus**: Protect sensitive data in command history
+
+- ✅ Sensitive data detection (passwords, API keys, tokens)
+- ✅ Auto-redaction with `[REDACTED]` placeholder
+- ✅ Command exclusion patterns
+- ✅ Privacy dashboard
+- ✅ 37 security tests (49 total passing)
 
 ### v0.3.0 - Testing Infrastructure (2026-06-16)
 **Focus**: Establish solid testing foundation
 
 - ✅ Mocha test framework with BDD interface
 - ✅ 12 unit tests for ANSI cleaning
-- ✅ `cleaner.ts` - Pure function module (no VS Code dependencies)
+- ✅ `cleaner.ts` - Pure function module
 - ✅ Test fixtures for ANSI and security testing
 - ✅ Separation of concerns for better testability
 
@@ -37,34 +56,13 @@
 
 ## 🚀 Upcoming Releases
 
-### v0.4.0 - Security & Privacy
-**Status**: Planning
-**Priority**: High
-
-**Goal**: Protect sensitive data in command history
-
-**Planned Features**:
-- Sensitive data detection (passwords, API keys, tokens)
-- Warning notifications when sensitive data is detected
-- Automatic redaction with `[REDACTED]` placeholder
-- Command exclusion patterns (regex-based)
-- Privacy dashboard
-
-**Configuration Options**:
-- Detection enable/disable
-- Redaction level: off/warn/redact/block
-- Custom regex patterns
-- Command exclusion list
-
----
-
 ### v0.5.0 - Improved Output Cleaning
 **Status**: Planning
 **Priority**: High
 
 **Goal**: Replace brittle regex-based cleaning with robust solution
 
-**Planned Improvements**:
+**Planned Features**:
 - Replace custom regex with `strip-ansi` library
 - Shell type detection (bash, zsh, fish, PowerShell)
 - Shell-specific prompt removal
@@ -153,6 +151,5 @@
 |-------|----------|
 | Exit codes inferred from output (some false positives) | v0.5.0 |
 | Regex-based ANSI cleaning is brittle | v0.5.0 |
-| Sensitive data stored in plain text | v0.4.0 |
+| Sensitive data stored in plain text | ✅ v0.4.0 |
 | Poor performance with >10MB outputs | v1.0.0 |
-

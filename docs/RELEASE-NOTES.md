@@ -1,5 +1,25 @@
 # Release Notes
 
+## v0.4.1 - Pre-commit & Testing Infrastructure (2026-06-17)
+
+### Added
+- 🛠️ Pre-commit validation script (`npm run precommit`)
+- 🛠️ Pre-push validation script (`npm run prepush`)
+- ⚡ Quick unit test script (`npm run test:unit`)
+- 🔬 Full test suite script (`npm run test:full`)
+- 🐳 `act` integration for local GitHub Actions testing
+- 📚 Comprehensive test documentation
+
+### Changed
+- 🔄 Migrated from mocha to vitest (faster, better ESM support)
+- 🔄 Improved security module logic
+- 🔄 Updated test scripts and configuration
+
+### Fixed
+- 🐛 Security test edge cases
+- 🐛 shouldRedactOrBlock function logic
+- 🐛 Docker detection in precommit script
+
 ## v0.4.0 - Security & Privacy (2026-06-17)
 
 ### Added

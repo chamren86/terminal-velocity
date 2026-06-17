@@ -1,10 +1,19 @@
 # Terminal History Outline - Feature Roadmap
 
 ## Current Status
-- **Version**: 0.4.0
-- **Status**: ✅ Stable - Security features implemented
+- **Version**: 0.4.1
+- **Status**: ✅ Stable - Security features + Testing infrastructure
 
 ## Completed Features
+
+### v0.4.1 - Testing Infrastructure & Pre-commit
+- ✅ Migrated from mocha to vitest
+- ✅ Pre-commit validation script
+- ✅ Pre-push validation script
+- ✅ Quick unit tests (`npm run test:unit`)
+- ✅ Full test suite (`npm run test:full`)
+- ✅ `act` integration for local GitHub Actions testing
+- ✅ 49 passing tests
 
 ### v0.4.0 - Security & Privacy
 - ✅ Sensitive data detection (passwords, API keys, tokens)
