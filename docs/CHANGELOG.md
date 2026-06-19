@@ -5,6 +5,21 @@ All notable changes to the "terminal-history-outline" extension will be document
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v0.4.4 - Improved Exit Code Detection (2026-06-19)
+
+### Added
+- 🔍 **Multi-layer exit code detection**
+  - Layer 1: Exit code from terminal event
+  - Layer 2: Exit status from terminal object
+  - Layer 3: Output analysis as fallback
+
+### Changed
+- 🔄 **Status indicators** - More accurate command status display
+  - 🟢 Green for successful commands (exit code 0)
+  - 🔴 Red for failed commands (non-zero exit code)
+  - 🟡 Yellow for running commands
+  - 🟠 Orange for warning state
+
 ## [0.4.3] - 2026-06-18
 
 ### Added

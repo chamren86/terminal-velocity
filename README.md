@@ -152,12 +152,15 @@ If commands aren't being captured, ensure Shell Integration is enabled:
 
 ## Roadmap
 
-**v0.4.1** (Current) - Testing Infrastructure & Pre-commit ✅  
-**v0.5.0** - Improved Output Cleaning  
-**v0.6.0** - Search & Filter  
+**v0.5.0** - Usability & Productivity (Copy, Search, Delete)  
 **v1.0.0** - Production Release
+**v1.1.0** - Groups & Organization  
+**v1.2.0** - AI & Agent Integration  
+**v1.3.0** - Export & Save  
+**v1.4.0** - Customization & UX  
 
-[Full Roadmap](docs/FEATURES.md)
+[Full Roadmap](docs/ROADMAP.md)
+[Feature Details](docs/FEATURES.md)
 
 ## Release Notes
 
