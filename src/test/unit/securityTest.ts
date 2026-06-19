@@ -34,7 +34,7 @@ const testConfig: ISecurityConfig = {
 };
 
 describe('Security Tests', () => {
-    beforeAll(() => {
+    before(() => {
         setSecurityConfig(testConfig);
     });
 
@@ -344,7 +344,7 @@ describe('Security Tests', () => {
     });
 });
 
-afterAll(() => {
+after(() => {
     const defaultConfig: ISecurityConfig = {
         detectionEnabled: true,
         redactionLevel: RedactionLevel.REDACT,

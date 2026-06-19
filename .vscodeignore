@@ -5,16 +5,21 @@ test/**
 *.test.js
 *.test.ts
 
-# Development files
-node_modules/**
+# Development files (but keep node_modules dependencies)
 .git/**
 .vscode/**
 .vscode-test/**
 scripts/**
 !scripts/*.md
 
-# Build outputs (keep only necessary)
-# Exclude all out/ except specific files
+# Exclude most of node_modules but keep strip-ansi
+node_modules/*
+!node_modules/strip-ansi
+!node_modules/strip-ansi/**/*
+!node_modules/ansi-regex
+!node_modules/ansi-regex/**/*
+
+# Build outputs - include all out files
 out/**
 !out/extension.js
 !out/extension.js.map
@@ -26,8 +31,14 @@ out/**
 !out/privacyCommands.js.map
 !out/terminalHistoryProvider.js
 !out/terminalHistoryProvider.js.map
+!out/constants/**/*.js
+!out/constants/**/*.js.map
+!out/enums/**/*.js
+!out/enums/**/*.js.map
+!out/interfaces/**/*.js
+!out/interfaces/**/*.js.map
 
-# Documentation (keep README and LICENSE)
+# Documentation
 !README.md
 !LICENSE.md
 CHANGELOG.md
@@ -43,4 +54,3 @@ docs/**
 # Binary files
 bin/
 *.vsix
-node_modules/

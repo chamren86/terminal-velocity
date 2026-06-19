@@ -127,7 +127,7 @@
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
+    "compile": "./scripts/build.sh",
     "watch": "tsc -watch -p ./",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -136,7 +136,9 @@
     "test:act": "act -j test --pull=false",
     "precommit": "./scripts/precommit.sh",
     "prepush": "./scripts/prepush.sh",
-    "quick": "./scripts/quick-test.sh"
+    "quick": "./scripts/quick-test.sh",
+    "package": "vsce package",
+    "build": "npm run compile && npm run package"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.0",
@@ -149,7 +151,7 @@
     "vitest": "^4.1.9"
   },
   "dependencies": {
-    "strip-ansi": "^7.1.0"
+    "strip-ansi": "^7.2.0"
   },
   "repository": {
     "type": "git",
