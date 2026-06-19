@@ -28,6 +28,7 @@ import { registerPrivacyCommands } from './privacyCommands.js';
 import { RedactionAction } from './enums/index.js';
 import {
     COMMAND_CLEAN_PATTERNS,
+    ERROR_DETECTION_PATTERNS,
     CONTEXT_VALUES,
     VIEW_IDS,
     STATUS_BAR_ICON,
@@ -36,10 +37,6 @@ import {
     RERUN_TERMINAL_PREFIX
 } from './constants/index.js';
 
-/**
- * Singleton reference to the current TerminalHistoryProvider instance.
- * Used to maintain state across function calls within the extension.
- */
 let currentHistoryProvider: TerminalHistoryProvider | undefined;
 
 /**
@@ -254,12 +251,13 @@ function initializeExtension(context: vscode.ExtensionContext) {
                 }
             }
             
-            // Layer 3: Fall back to output analysis
+            // Layer 3: Fall back to output analysis using centralized patterns
             if (exitCode === null) {
-                const hasNpmError = /npm ERR/i.test(fullOutput);
-                const hasError = /error|fail|exception|not found|permission denied|No such file|command not found|EACCES|ENOENT|npm error|version not changed|Version not changed/i.test(fullOutput);
+                // Create a regex from the centralized ERROR_DETECTION_PATTERNS
+                const errorRegex = new RegExp(ERROR_DETECTION_PATTERNS.join('|'), 'i');
+                const hasError = errorRegex.test(fullOutput);
                 
-                if (hasNpmError || hasError) {
+                if (hasError) {
                     exitCode = 1;
                 } else {
                     exitCode = 0;

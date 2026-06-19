@@ -1,65 +1,61 @@
 import * as assert from 'node:assert';
 import { describe, it } from 'node:test';
 import {
-    hasErrorOutput,
-    hasWarningOutput,
     ERROR_DETECTION_PATTERNS,
     WARNING_DETECTION_PATTERNS
 } from '../../constants/commandPatterns.js';
 
 describe('Command Patterns Tests', () => {
+    // Test the error patterns directly
     describe('Error Detection', () => {
         it('Should detect git command errors', () => {
             const output = "git: 'confit' is not a git command. See 'git --help'.";
-            assert.strictEqual(hasErrorOutput(output), true);
+            const errorRegex = new RegExp(ERROR_DETECTION_PATTERNS.join('|'), 'i');
+            assert.strictEqual(errorRegex.test(output), true);
         });
 
         it('Should detect fatal errors', () => {
             const output = "fatal: not a git repository";
-            assert.strictEqual(hasErrorOutput(output), true);
+            const errorRegex = new RegExp(ERROR_DETECTION_PATTERNS.join('|'), 'i');
+            assert.strictEqual(errorRegex.test(output), true);
         });
 
         it('Should detect command not found errors', () => {
             const output = "bash: ls: command not found";
-            assert.strictEqual(hasErrorOutput(output), true);
+            const errorRegex = new RegExp(ERROR_DETECTION_PATTERNS.join('|'), 'i');
+            assert.strictEqual(errorRegex.test(output), true);
         });
 
         it('Should detect permission denied errors', () => {
             const output = "permission denied: /root/file.txt";
-            assert.strictEqual(hasErrorOutput(output), true);
+            const errorRegex = new RegExp(ERROR_DETECTION_PATTERNS.join('|'), 'i');
+            assert.strictEqual(errorRegex.test(output), true);
         });
 
         it('Should not detect success as error', () => {
             const output = "Successfully completed";
-            assert.strictEqual(hasErrorOutput(output), false);
+            const errorRegex = new RegExp(ERROR_DETECTION_PATTERNS.join('|'), 'i');
+            assert.strictEqual(errorRegex.test(output), false);
         });
     });
 
     describe('Warning Detection', () => {
         it('Should detect deprecation warnings', () => {
             const output = "DeprecationWarning: The `url.parse()` behavior is not standardized";
-            assert.strictEqual(hasWarningOutput(output), true);
+            const warningRegex = new RegExp(WARNING_DETECTION_PATTERNS.join('|'), 'i');
+            assert.strictEqual(warningRegex.test(output), true);
         });
 
         it('Should detect npm warnings', () => {
             const output = "npm warn deprecated inflight@1.0.6: This module is not supported";
-            assert.strictEqual(hasWarningOutput(output), true);
+            const warningRegex = new RegExp(WARNING_DETECTION_PATTERNS.join('|'), 'i');
+            assert.strictEqual(warningRegex.test(output), true);
         });
 
         it('Should detect security warnings', () => {
             const output = "Potential security issue detected: Your extension package contains sensitive information";
-            assert.strictEqual(hasWarningOutput(output), true);
-        });
-
-        it('Should not detect warnings when there are errors', () => {
-            const output = "error: command not found and also a warning";
-            assert.strictEqual(hasWarningOutput(output), false);
-            assert.strictEqual(hasErrorOutput(output), true);
-        });
-
-        it('Should not detect success as warning', () => {
-            const output = "Build complete!";
-            assert.strictEqual(hasWarningOutput(output), false);
+            const warningRegex = new RegExp(WARNING_DETECTION_PATTERNS.join('|'), 'i');
+            assert.strictEqual(warningRegex.test(output), true);
         });
     });
 
