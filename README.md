@@ -1,9 +1,9 @@
-# Terminal History Outline
+# Terminal Velocity
 
-[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/chamren86/terminal-history-outline)
+[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/chamren86/terminal-velocity)
 [![VS Code](https://img.shields.io/badge/VS%20Code-1.93%2B-blue.svg)](https://code.visualstudio.com/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Download VSIX](https://img.shields.io/badge/download-.vsix-blue.svg)](https://github.com/chamren86/terminal-history-outline/releases/latest/download/terminal-history-outline-1.0.0.vsix)
+[![Download VSIX](https://img.shields.io/badge/download-.vsix-blue.svg)](https://github.com/chamren86/terminal-velocity/releases/latest/download/terminal-velocity-1.0.0.vsix)
 
 View and manage your terminal command history directly in the VS Code Explorer outline view.
 
@@ -20,28 +20,28 @@ View and manage your terminal command history directly in the VS Code Explorer o
 ## Demo
 
 <div align="center">
-  <img src="docs/basicPreview.gif" alt="Terminal History Outline Demo" width="700"/>
-  <p><em>Terminal History Outline in action</em></p>
+  <img src="docs/basicPreview.gif" alt="Terminal Velocity Demo" width="700"/>
+  <p><em>Terminal Velocity in action</em></p>
 </div>
 
 ### From VSIX (Manual Download)
 
 1. Download the latest `.vsix` file:
-   - From [GitHub Releases](https://github.com/chamren86/terminal-history-outline/releases)
-   - Or via direct link: [Download Latest VSIX](https://github.com/chamren86/terminal-history-outline/releases/latest/download/terminal-history-outline-1.0.0.vsix)
+   - From [GitHub Releases](https://github.com/chamren86/terminal-velocity/releases)
+   - Or via direct link: [Download Latest VSIX](https://github.com/chamren86/terminal-velocity/releases/latest/download/terminal-velocity-1.0.0.vsix)
 
 2. Install the extension:
    - **VS Code UI**: Extensions → `...` → Install from VSIX → Select the file
-   - **Command Line**: `code --install-extension terminal-history-outline-1.0.0.vsix`
+   - **Command Line**: `code --install-extension terminal-velocity-1.0.0.vsix`
 
-### From VS Code Marketplace (Coming Soon)
+### From VS Code Marketplace
 The extension will be available on the Marketplace after beta testing.
 
 ### From Source (For Development)
 
 ```
-git clone https://github.com/chamren86/terminal-history-outline.git
-cd terminal-history-outline
+git clone https://github.com/chamren86/terminal-velocity.git
+cd terminal-velocity
 npm install
 npm run compile
 ```
@@ -98,8 +98,8 @@ VS Code settings (`Ctrl+,`):
 ### Setup
 
 ```
-git clone https://github.com/chamren86/terminal-history-outline.git
-cd terminal-history-outline
+git clone https://github.com/chamren86/terminal-velocity.git
+cd terminal-velocity
 npm install
 npm run compile
 ```

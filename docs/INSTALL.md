@@ -4,7 +4,7 @@
 
 ### Step 1: Download the VSIX
 Download the latest `.vsix` file from:
-- [GitHub Releases](https://github.com/chamren86/terminal-history-outline/releases)
+- [GitHub Releases](https://github.com/chamren86/terminal-velocity/releases)
 
 ### Step 2: Install in VS Code
 
@@ -17,7 +17,7 @@ Download the latest `.vsix` file from:
 
 **Option B: Command Line**
 
-code --install-extension terminal-history-outline-0.4.1.vsix
+code --install-extension terminal-velocity-0.4.1.vsix
 
 **Option C: Drag and Drop**
 1. Open VS Code
@@ -26,12 +26,12 @@ code --install-extension terminal-history-outline-0.4.1.vsix
 ### Step 3: Verify Installation
 1. Go to Extensions (Ctrl+Shift+X)
 2. Search for "@installed"
-3. Look for "Terminal History Outline"
+3. Look for "Terminal Velocity"
 
 ## Method 2: From Source (For Development)
 
-git clone https://github.com/chamren86/terminal-history-outline.git
-cd terminal-history-outline
+git clone https://github.com/chamren86/terminal-velocity.git
+cd terminal-velocity
 npm install
 npm run compile
 
@@ -50,4 +50,4 @@ Ensure Shell Integration is enabled:
 2. Check the Explorer panel for "Terminal History" section
 
 ### Feedback
-Please report issues at: https://github.com/chamren86/terminal-history-outline/issues
+Please report issues at: https://github.com/chamren86/terminal-velocity/issues

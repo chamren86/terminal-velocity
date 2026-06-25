@@ -1,11 +1,11 @@
 {
-  "name": "terminal-history-outline",
-  "displayName": "Terminal History Outline",
+  "name": "terminal-velocity",
+  "displayName": "Terminal Velocity",
   "description": "View and manage your terminal command history directly in the VS Code Explorer outline view.",
   "version": "1.0.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/chamren86/terminal-history-outline.git"
+    "url": "https://github.com/chamren86/terminal-velocity.git"
   },
   "engines": {
     "vscode": "^1.93.0"
@@ -156,7 +156,7 @@
       ]
     },
     "configuration": {
-      "title": "Terminal History Outline",
+      "title": "Terminal Velocity",
       "properties": {
         "terminalHistory.maxHistorySize": {
           "type": "number",

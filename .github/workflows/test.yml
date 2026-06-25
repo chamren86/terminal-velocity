@@ -1,4 +1,5 @@
-name: Test
+# .github/workflows/build.yml
+name: Build Terminal Velocity
 
 on:
   push:
@@ -7,31 +8,21 @@ on:
     branches: [ main ]
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
-    
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20'
-        cache: 'npm'
-
-    - name: Install dependencies
-      run: npm ci
-
-    - name: Compile
-      run: npm run compile
-
-    - name: Run tests
-      run: npm test
-
-    - name: Upload coverage
-      if: false  # Disable coverage upload for now
-      uses: codecov/codecov-action@v4
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
-        directory: ./coverage
+      - uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+      - run: npm ci
+      - run: npm run compile
+      - run: npm test
+      - name: Package Extension
+        run: npx vsce package
+      - name: Upload VSIX
+        uses: actions/upload-artifact@v3
+        with:
+          name: terminal-velocity
+          path: terminal-velocity-*.vsix

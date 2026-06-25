@@ -1,4 +1,4 @@
-# Contributing to Terminal History Outline
+# Contributing to Terminal Velocity
 
 Thank you for your interest in contributing! This guide will help you get started.
 
@@ -12,8 +12,8 @@ Thank you for your interest in contributing! This guide will help you get starte
 
 ### 1. Clone the repository
 
-git clone https://github.com/chamren86/terminal-history-outline.git
-cd terminal-history-outline
+git clone https://github.com/chamren86/terminal-velocity.git
+cd terminal-velocity
 
 ### 2. Install dependencies
 
@@ -45,7 +45,7 @@ vsce package
 ### 6. Install locally
 
 # Install the VSIX
-code --install-extension terminal-history-outline-*.vsix --force
+code --install-extension terminal-velocity-*.vsix --force
 
 ## Project Structure
 
@@ -91,7 +91,7 @@ Make sure you're using the correct Node.js version (18+) and have installed all 
 3. Build: npm run compile
 4. Package: vsce package
 5. Create tag: git tag -a vX.X.X -m "Release vX.X.X"
-6. Create release: gh release create vX.X.X --title "vX.X.X" --notes-file RELEASE-NOTES.md terminal-history-outline-X.X.X.vsix
+6. Create release: gh release create vX.X.X --title "vX.X.X" --notes-file RELEASE-NOTES.md terminal-velocity-X.X.X.vsix
 
 ## License
 

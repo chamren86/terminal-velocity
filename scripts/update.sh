@@ -24,7 +24,7 @@ vsce package --allow-missing-repository
 
 # Install
 echo "📦 Installing..."
-code --install-extension terminal-history-outline-0.5.0.vsix --force
+code --install-extension terminal-velocity-0.5.0.vsix --force
 
 echo ""
 echo "✅ Update complete!"

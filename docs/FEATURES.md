@@ -1,4 +1,4 @@
-# Terminal History Outline - Feature Roadmap
+# Terminal Velocity - Feature Roadmap
 
 ## Current Status
 - **Version**: 0.4.4

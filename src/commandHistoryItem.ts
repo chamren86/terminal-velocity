@@ -1,6 +1,6 @@
 /**
  * @file commandHistoryItem.ts
- * @description Command history item class for the Terminal History Outline extension.
+ * @description Command history item class for the Terminal Velocity extension.
  */
 
 import { cleanTerminalOutput } from './cleaner.js';

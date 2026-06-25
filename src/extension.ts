@@ -1,6 +1,6 @@
 /**
  * @file extension.ts
- * @description Main entry point for the Terminal History Outline VS Code extension.
+ * @description Main entry point for the Terminal Velocity VS Code extension.
  * 
  * This extension captures terminal command history and displays it in a VS Code
  * Explorer view, providing quick access to rerun commands, copy outputs, and
@@ -406,7 +406,7 @@ function initializeExtension(context: vscode.ExtensionContext) {
         }
     };
     
-    statusBarItem.tooltip = 'Terminal History Outline';
+    statusBarItem.tooltip = 'Terminal Velocity';
     statusBarItem.show();
     updateStatusBar();
     context.subscriptions.push(statusBarItem);

@@ -8,7 +8,7 @@
 
 ### 🎉 Welcome to the first stable release!
 
-After months of development and testing, Terminal History Outline is now production-ready.
+After months of development and testing, Terminal Velocity is now production-ready.
 
 ### ✨ Key Features
 
@@ -34,7 +34,7 @@ After months of development and testing, Terminal History Outline is now product
 **From VS Code Marketplace:**
 1. Open VS Code
 2. Go to Extensions (Ctrl+Shift+X)
-3. Search for "Terminal History Outline"
+3. Search for "Terminal Velocity"
 4. Click Install
 
 **From VSIX:**

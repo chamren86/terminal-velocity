@@ -1,6 +1,6 @@
 /**
  * @file privacyCommands.ts
- * @description Privacy dashboard commands for the Terminal History Outline extension.
+ * @description Privacy dashboard commands for the Terminal Velocity extension.
  * 
  * This file handles:
  * - Registering the privacy dashboard command
