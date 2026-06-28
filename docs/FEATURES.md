@@ -1,164 +1,80 @@
-# Terminal Velocity - Feature Roadmap
+# Terminal Velocity - Features
 
-## Current Status
-- **Version**: 0.4.4
-- **Status**: ✅ Stable - Exit code detection and stability
-- **Next Release**: 0.5.0 - Usability & Productivity
+## What It Does
 
----
-
-## ✅ COMPLETED FEATURES
-
-### v0.4.4 - Exit Code Detection (2026-06-19)
-- ✅ Multi-layer exit code detection (event, terminal, output)
-- ✅ Improved status indicators for all commands
-- ✅ npm test shows green when all tests pass
-- ✅ npm version shows red when error occurs
-- ✅ Orange (warning) indicators for commands with warnings
-- ✅ All 53 tests passing
-
-### v0.4.3 - Constants Extraction (2026-06-18)
-- ✅ Constants directory with 6 organized constant files
-- ✅ Full JSDoc documentation for all classes and functions
-
-### v0.4.2 - Type Safety (2026-06-18)
-- ✅ Enum directory for type-safe constants
-- ✅ Interface directory for type definitions
-
-### v0.4.1 - Testing Infrastructure (2026-06-17)
-- ✅ Pre-commit and pre-push validation scripts
-- ✅ Migrated from mocha to vitest
-- ✅ 53 passing tests
-
-### v0.4.0 - Security & Privacy (2026-06-17)
-- ✅ Sensitive data detection (passwords, API keys, tokens)
-- ✅ Auto-redaction with [REDACTED] placeholder
-- ✅ Command exclusion patterns
-- ✅ Privacy dashboard
-
-### v0.3.0 - Testing Infrastructure (2026-06-16)
-- ✅ Mocha test framework with 49 tests
-- ✅ Cleaner module with no VS Code dependencies
-
-### v0.2.0 - Core Functionality (2026-06-15)
-- ✅ Command capture from VS Code terminals
-- ✅ Full command output capture with streaming
-- ✅ 🟢/🔴/🟡 Status indicators
-- ✅ Rerun commands and copy output
-- ✅ Persistent history across sessions
+Terminal Velocity automatically captures your terminal commands and makes them easily accessible in the VS Code Explorer sidebar.
 
 ---
 
-## 🚀 PLANNED FEATURES
+## ✨ Current Features (v1.0.1)
 
-### v0.5.0 - Usability & Productivity (Next Release)
-**Priority**: High
-**Goal**: Enhance user experience with copy, search, and delete functionality
+### 📝 Command History
+- **Automatic Capture** - Every command you run is automatically saved
+- **Full Output** - Complete command output is captured and stored
+- **Persistent Storage** - History survives VS Code restarts
+- **Status Indicators** - Visual feedback for success, failure, running, or interrupted commands
 
-#### Copy Commands
-- [ ] **Copy Command Only** - Copy just the command text
-- [ ] **Copy Output Only** - Copy just the command output
-- [ ] **Copy Command + Output** - Copy both with formatting
-- [ ] **Quick copy buttons** - Inline copy buttons in TreeView
+### 🟢 Status Indicators
+| Icon | Meaning |
+|------|---------|
+| 🟢 | Command succeeded (exit code 0) |
+| 🔴 | Command failed (non-zero exit code) |
+| 🟡 | Command is still running |
 
-#### Search & Filter
-- [ ] **Search box** - Search commands and outputs
-- [ ] **Search options** - Search in command, output, or both
-- [ ] **Filter by status** - Filter by success/error/warning/running
-- [ ] **Filter by terminal** - Filter by terminal session
+### 🔧 Quick Actions
+Right-click or use the inline buttons on any command to:
+- **Rerun** - Execute the command again in a new terminal
+- **Copy Command** - Copy just the command text
+- **Copy Output** - Copy just the command output
+- **Copy Both** - Copy command and output together
+- **Delete Entry** - Remove the command from history
 
-#### Delete Commands
-- [ ] **Delete single command** - Delete individual command from history
-- [ ] **Delete multiple commands** - Bulk delete with multi-select
-- [ ] **Delete confirmation** - Confirm before deleting
+### 🗑️ History Management
+- **Delete Single** - Remove individual commands
+- **Clear All** - Clear entire history with confirmation
 
-#### Quick Actions
-- [ ] **Inline action buttons** - Copy and delete buttons in TreeView
-- [ ] **Context menu** - Right-click menu for all actions
+### 🔒 Security & Privacy
+- **Sensitive Data Detection** - Automatically detects passwords, API keys, and tokens
+- **Auto-Redaction** - Replaces sensitive data with `[REDACTED]`
+- **Command Exclusion** - Exclude specific commands from being saved
+- **Privacy Dashboard** - Centralized security settings
 
----
-
-### v1.0.0 - Production Stable Release
-**Priority**: High
-**Goal**: Optimize for large histories and production readiness
-
-#### Performance
-- [ ] **Virtual scrolling** - Lazy load commands as user scrolls
-- [ ] **Stream processing** - Process large outputs without blocking UI
-- [ ] **Database backend** - SQLite for better performance
-- [ ] **Compression** - Compress large outputs
-
-#### Reliability
-- [ ] **Auto-cleanup** - Configurable retention policies
-- [ ] **Error recovery** - Graceful error handling
-- [ ] **Full test coverage** - 100% test coverage
-
-#### Analytics
-- [ ] **Usage analytics** - Command usage statistics
-- [ ] **Performance metrics** - Extension performance monitoring
+### 🎨 Clean Display
+- **ANSI Code Stripping** - Removes color codes for clean, readable output
+- **Output Truncation** - Long outputs are truncated for performance
+- **Full Output Access** - Copy full output with one click
 
 ---
 
-### v1.1.0 - AI & Agent Integration
-**Priority**: High
-**Goal**: Enable AI agents and assistants to use terminal history context
+## 🚀 Upcoming Features
 
-#### AI Features
-- [ ] **Agent API** - Expose history to AI agents
-- [ ] **Context sharing** - Share command history with AI assistants
-- [ ] **Smart suggestions** - AI-powered command recommendations
-- [ ] **Command annotations** - Add AI-generated notes to commands
+### 🔍 Search & Filter
+- **Real-time Search** - Quickly find commands by typing
+- **Filter by Text** - Filter by command or output content
+- **Instant Results** - Results update as you type
+- **Filter by Status** - Filter by success/error/running/interrupted
 
-#### Integration Points
-- [ ] **GitHub Copilot** - Integration with Copilot Chat
-- [ ] **Continue.dev** - Integration with Continue AI
-- [ ] **Custom agents** - API for custom AI agents
+### 📂 Groups & Organization
+- **Group by Terminal** - Organize commands by terminal session
+- **Group by Project** - Organize by working directory
+- **Custom Groups** - Create your own groups
+- **Pin Commands** - Pin important commands to top
 
----
-
-### v1.2.0 - Groups & Organization
-**Priority**: Medium
-**Goal**: Better organize commands for complex workflows
-
-#### Grouping
-- [ ] **Terminal groups** - Group commands by terminal session
-- [ ] **Project groups** - Group commands by working directory
-- [ ] **Custom groups** - User-defined command groups
-
-#### Organization
-- [ ] **Command tagging** - Tag commands for easy categorization
-- [ ] **Pin commands** - Pin important commands to top
-- [ ] **Session tracking** - Track and group commands by session
+### 🗑️ Bulk Operations
+- **Delete Multiple** - Select and delete multiple commands at once
+- **Export Selection** - Export selected commands
 
 ---
 
-### v1.3.0 - Export & Save
-**Priority**: Medium
-**Goal**: Save and share command history
+## 📊 Quick Comparison
 
-#### Export
-- [ ] **Export to JSON** - Full history with metadata
-- [ ] **Export to CSV** - For analysis in Excel/other tools
-- [ ] **Export to Markdown** - Formatted documentation
-
-#### Save
-- [ ] **Save commands** - Save important commands and outputs
-- [ ] **Favorites** - Star/favorite important commands
-- [ ] **Workspace history** - History per workspace
-
----
-
-### v1.4.0 - Customization & UX
-**Priority**: Low
-**Goal**: Allow users to customize their experience
-
-#### Visual Customization
-- [ ] **Custom themes** - Custom color schemes and indicators
-- [ ] **Custom icons** - User-defined status icons
-- [ ] **Custom display** - Configurable display options
-
-#### Interaction
-- [ ] **Custom shortcuts** - User-configurable keyboard shortcuts
-- [ ] **Custom actions** - User-defined actions for commands
+| Feature | Terminal Velocity (v1.0.1) | Built-in Terminal |
+|---------|----------------------------|-------------------|
+| **Persistent History** | ✅ Across sessions | ❌ Current session only |
+| **Command Output** | ✅ Full output saved | ❌ Not saved |
+| **Copy & Rerun** | ✅ One-click actions | ❌ Manual only |
+| **Security** | ✅ Sensitive data redaction | ❌ No security features |
+| **Search/Filter** | 🔜 Coming in v1.1.0 | ❌ Basic scroll only |
+| **Export** | 🔜 Planned for v1.3.0 | ❌ No export |
 
 ---

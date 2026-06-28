@@ -24,29 +24,11 @@ View and manage your terminal command history directly in the VS Code Explorer o
   <p><em>Terminal Velocity in action</em></p>
 </div>
 
-### From VSIX (Manual Download)
+## Documentation
 
-1. Download the latest `.vsix` file:
-   - From [GitHub Releases](https://github.com/chamren86/terminal-velocity/releases)
-   - Or via direct link: [Download Latest VSIX](https://github.com/chamren86/terminal-velocity/releases/latest/download/terminal-history-outline-1.0.0.vsix)
-
-2. Install the extension:
-   - **VS Code UI**: Extensions → `...` → Install from VSIX → Select the file
-   - **Command Line**: `code --install-extension terminal-history-outline-1.0.0.vsix`
-
-### From VS Code Marketplace
-The extension will be available on the Marketplace after beta testing.
-
-### From Source (For Development)
-
-```
-git clone https://github.com/chamren86/terminal-velocity.git
-cd terminal-velocity
-npm install
-npm run compile
-```
-
-Press F5 to launch the extension in a development window.
+- [Frequestly Asked Questions ](docs/FAQ.md)
+- [Installation](docs/INSTALL.md)
+- [Current and Future Features](docs/FEATURES.md)
 
 ## Usage
 
@@ -54,30 +36,6 @@ Press F5 to launch the extension in a development window.
 2. Run any command - it appears in the Terminal History view (Explorer sidebar)
 3. Click a command to see its output
 4. Right-click for actions: Rerun, Copy Output
-
-### Commands
-
-| Command | Description |
-|---------|-------------|
-| `Clear Terminal History` | Clear all saved commands |
-| `Rerun Command` | Re-run the selected command |
-| `Copy Output` | Copy command output to clipboard |
-| `Privacy Dashboard` | View and manage security settings |
-
-## Configuration
-
-VS Code settings (`Ctrl+,`):
-
-```
-{
-    "terminalHistory.maxHistorySize": 100,
-    "terminalHistory.security.detectionEnabled": true,
-    "terminalHistory.security.redactionLevel": "warn",
-    "terminalHistory.security.warnOnDetection": true,
-    "terminalHistory.security.customPatterns": [],
-    "terminalHistory.security.excludedCommands": []
-}
-```
 
 ### Security Settings
 
@@ -89,29 +47,11 @@ VS Code settings (`Ctrl+,`):
 | `customPatterns` | string[] | Custom regex patterns for detection |
 | `excludedCommands` | string[] | Commands to never save (regex supported) |
 
-## Development
-
-### Prerequisites
-- Node.js 18+
-- npm
-
-### Setup
-
-```
-git clone https://github.com/chamren86/terminal-velocity.git
-cd terminal-velocity
-npm install
-npm run compile
-```
-
 ### Testing
 
 | Command | Description | When to Use |
 |---------|-------------|-------------|
 | `npm test` | Run all unit tests | During development |
-| `npm run test:unit` | Quick tests (fast) | Rapid development |
-| `npm run test:full` | Full suite with clean install | Before commit |
-| `npm run test:act` | Run GitHub Actions locally | Test CI/CD locally |
 | `npm run precommit` | Check uncommitted changes | Before committing |
 | `npm run prepush` | Full validation | Before pushing |
 
@@ -122,43 +62,10 @@ To test GitHub Actions locally:
 - **Windows**: `choco install act`
 - **More info**: https://github.com/nektos/act
 
-### Project Structure
-
-```
-src/
-├── cleaner.ts              # ANSI cleaning
-├── extension.ts            # Extension activation
-├── security.ts             # Security module
-├── privacyCommands.ts      # Privacy dashboard commands
-├── terminalHistoryProvider.ts # Tree provider
-└── test/                   # Unit tests
-    ├── unit/
-    │   ├── ansiCleanerTest.ts    # ANSI cleaning tests
-    │   └── securityTest.ts       # Security tests
-    └── fixtures/
-        └── sampleOutputs.ts      # Test data
-```
-
 ## Requirements
 
 - VS Code 1.93+
 - Shell Integration enabled (default: on)
-
-### Enabling Shell Integration
-If commands aren't being captured, ensure Shell Integration is enabled:
-1. Open VS Code Settings (Ctrl+,)
-2. Search for "shell integration enabled"
-3. Check `Terminal > Integrated > Shell Integration: Enabled`
-
-## Roadmap
-
-**v1.1.0** - Groups & Organization  
-**v1.2.0** - AI & Agent Integration  
-**v1.3.0** - Export & Save  
-**v1.4.0** - Customization & UX  
-
-[Full Roadmap](docs/ROADMAP.md)
-[Feature Details](docs/FEATURES.md)
 
 ## Release Notes
 
