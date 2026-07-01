@@ -59,7 +59,7 @@ vi.mock('vscode', () => ({
     }
 }));
 
-describe('TerminalHistoryProvider - v0.5.0 Features', () => {
+describe('TerminalHistoryProvider', () => {
     let provider: TerminalHistoryProvider;
     let mockContext: vscode.ExtensionContext;
     let testStoragePath: string;
@@ -79,6 +79,8 @@ describe('TerminalHistoryProvider - v0.5.0 Features', () => {
         }
         
         provider = new TerminalHistoryProvider(mockContext);
+        // Reset the provider state before each test
+        provider.reset();
     });
     
     afterEach(() => {
@@ -169,6 +171,102 @@ describe('TerminalHistoryProvider - v0.5.0 Features', () => {
             provider.setFilter('');
             children = await provider.getChildren();
             expect((children as VSCodeCommandHistoryItem[]).length).toBe(initialCount);
+        });
+
+        it('should filter commands by output text', async () => {
+            // Clear default commands and add ones with known outputs
+            provider.clearHistory();
+            
+            const cmd1 = new CommandHistoryItem('echo "hello"', 'terminal', new Date(), '/cwd');
+            cmd1.output = 'hello world';
+            provider.addCommand(cmd1);
+            
+            const cmd2 = new CommandHistoryItem('ls -la', 'terminal', new Date(), '/cwd');
+            cmd2.output = 'total 0';
+            provider.addCommand(cmd2);
+            
+            const cmd3 = new CommandHistoryItem('echo "goodbye"', 'terminal', new Date(), '/cwd');
+            cmd3.output = 'goodbye world';
+            provider.addCommand(cmd3);
+        
+            // Filter by output text
+            provider.setFilter('world');
+            const children = await provider.getChildren();
+            const filtered = children as VSCodeCommandHistoryItem[];
+            
+            // Should find commands with "world" in output
+            expect(filtered.length).toBe(2);
+            expect(filtered.some(item => item.commandText === 'echo "hello"')).toBe(true);
+            expect(filtered.some(item => item.commandText === 'echo "goodbye"')).toBe(true);
+            expect(filtered.some(item => item.commandText === 'ls -la')).toBe(false);
+        });
+
+        it('should search in both command AND output', async () => {
+            provider.clearHistory();
+            
+            // Command matches filter
+            const cmd1 = new CommandHistoryItem('npm install', 'terminal', new Date(), '/cwd');
+            cmd1.output = 'installing packages...';
+            provider.addCommand(cmd1);
+            
+            // Output matches filter
+            const cmd2 = new CommandHistoryItem('echo "test"', 'terminal', new Date(), '/cwd');
+            cmd2.output = 'npm packages installed successfully';
+            provider.addCommand(cmd2);
+        
+            // Neither matches
+            const cmd3 = new CommandHistoryItem('ls', 'terminal', new Date(), '/cwd');
+            cmd3.output = 'file1 file2';
+            provider.addCommand(cmd3);
+        
+            provider.setFilter('npm');
+            const children = await provider.getChildren();
+            const filtered = children as VSCodeCommandHistoryItem[];
+            
+            // Should find both command that contains "npm" AND output that contains "npm"
+            expect(filtered.length).toBe(2);
+            expect(filtered.some(item => item.commandText === 'npm install')).toBe(true);
+            expect(filtered.some(item => item.commandText === 'echo "test"')).toBe(true);
+            expect(filtered.some(item => item.commandText === 'ls')).toBe(false);
+        });
+
+        it('should handle null or undefined output when filtering', async () => {
+            provider.clearHistory();
+            
+            const cmd1 = new CommandHistoryItem('echo "hello"', 'terminal', new Date(), '/cwd');
+            cmd1.output = null as any; // Simulate no output
+            provider.addCommand(cmd1);
+            
+            const cmd2 = new CommandHistoryItem('echo "world"', 'terminal', new Date(), '/cwd');
+            cmd2.output = 'world output';
+            provider.addCommand(cmd2);
+            
+            provider.setFilter('world');
+            const children = await provider.getChildren();
+            const filtered = children as VSCodeCommandHistoryItem[];
+            
+            // Should find the command that has "world" in its output
+            expect(filtered.length).toBe(1);
+            expect(filtered[0].commandText).toBe('echo "world"');
+        });
+
+        it('should show filter status correctly', async () => {
+            const item = new CommandHistoryItem('test command', 'terminal', new Date(), '/cwd');
+            provider.addCommand(item);
+            
+            // Initially no filter
+            expect(provider.isFilterActive()).toBe(false);
+            expect(provider.getFilterText()).toBe('');
+            
+            // Apply filter
+            provider.setFilter('test');
+            expect(provider.isFilterActive()).toBe(true);
+            expect(provider.getFilterText()).toBe('test');
+    
+            // Clear filter
+            provider.setFilter('');
+            expect(provider.isFilterActive()).toBe(false);
+            expect(provider.getFilterText()).toBe('');
         });
     });
     

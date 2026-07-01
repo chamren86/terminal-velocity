@@ -35,7 +35,8 @@ View and manage your terminal command history directly in the VS Code Explorer o
 1. Open a terminal (`` Ctrl+` ``)
 2. Run any command - it appears in the Terminal History view (Explorer sidebar)
 3. Click a command to see its output
-4. Right-click for actions: Rerun, Copy Output
+4. Hover over history items for actions: Rerun, Copy Command and/or output, Delete Entry
+5. Search command and output history
 
 ### Security Settings
 
@@ -66,10 +67,6 @@ To test GitHub Actions locally:
 
 - VS Code 1.93+
 - Shell Integration enabled (default: on)
-
-## Release Notes
-
-[Full Release Notes](docs/RELEASE-NOTES.md)
 
 ## License
 

@@ -4,6 +4,11 @@ All notable changes to the **Terminal Velocity** VS Code extension will be docum
 
 ---
 
+## [1.1.0] - 2026-06-30
+
+### Added
+- **Search History Command**: Search command and output history.
+
 ## [1.0.1] - 2026-06-27
 
 ### Fixed

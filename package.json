@@ -84,6 +84,16 @@
         "command": "terminalHistory.showActions",
         "title": "Show Actions",
         "icon": "$(ellipsis)"
+      },
+      {
+        "command": "terminalHistory.searchHistory",
+        "title": "Search History",
+        "icon": "$(filter)"
+      },
+      {
+        "command": "terminalHistory.clearFilter",
+        "title": "Clear Filter",
+        "icon": "$(clear-all)"
       }
     ],
     "menus": {
@@ -92,6 +102,16 @@
           "command": "terminalHistory.clear",
           "group": "navigation",
           "when": "view == terminalHistory"
+        },
+        {
+          "command": "terminalHistory.searchHistory",
+          "group": "navigation",
+          "when": "view == terminalHistory"
+        },
+        {
+          "command": "terminalHistory.clearFilter",
+          "group": "navigation",
+          "when": "view == terminalHistory && terminalHistory:filterActive"
         },
         {
           "command": "terminalHistory.privacyDashboard",

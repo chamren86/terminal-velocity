@@ -107,6 +107,19 @@ function initializeExtension(context: vscode.ExtensionContext) {
     context.subscriptions.push(treeView);
     
     /**
+     * Updates the filter active context for UI visibility
+     */
+    const updateFilterContext = () => {
+        if (currentHistoryProvider) {
+            const isActive = currentHistoryProvider.isFilterActive();
+            vscode.commands.executeCommand('setContext', 'terminalHistory:filterActive', isActive);
+        }
+    };
+    
+    // Initialize filter context
+    updateFilterContext();
+    
+    /**
      * Clear Terminal History
      * Removes all commands from history after confirmation
      * 
@@ -229,6 +242,8 @@ function initializeExtension(context: vscode.ExtensionContext) {
     /**
      * Search History
      * Opens an input box for filtering the history
+     * 
+     * Triggered from: View title search icon or command palette
      */
     const searchCommand = vscode.commands.registerCommand('terminalHistory.searchHistory', async () => {
         if (!currentHistoryProvider) {
@@ -237,14 +252,41 @@ function initializeExtension(context: vscode.ExtensionContext) {
         
         const query = await vscode.window.showInputBox({
             prompt: 'Search terminal history',
-            placeHolder: 'Type to filter commands...',
+            placeHolder: 'Type to filter commands and outputs...',
             ignoreFocusOut: true,
-            value: ''
+            value: currentHistoryProvider.getFilterText() || ''
         });
         
         if (query !== undefined) {
             currentHistoryProvider.setFilter(query);
+            updateFilterContext();
+            
+            if (query.trim()) {
+                const count = currentHistoryProvider.getCommandCount();
+                const filtered = currentHistoryProvider.getFilteredHistory().length;
+                if (filtered === 0) {
+                    vscode.window.showWarningMessage(`No commands found matching "${query}"`);
+                }
+            } else {
+                vscode.window.showInformationMessage('Filter cleared');
+            }
         }
+    });
+    
+    /**
+     * Clear Filter
+     * Removes the current filter and shows all history
+     * 
+     * Triggered from: View title clear filter button (visible when filter is active)
+     */
+    const clearFilterCommand = vscode.commands.registerCommand('terminalHistory.clearFilter', () => {
+        if (!currentHistoryProvider) {
+            return;
+        }
+        
+        currentHistoryProvider.setFilter('');
+        updateFilterContext();
+        vscode.window.showInformationMessage('Filter cleared');
     });
     
     // Register all commands with the extension context
@@ -255,7 +297,8 @@ function initializeExtension(context: vscode.ExtensionContext) {
         copyOutputCommand,
         copyCommandAndOutput,
         deleteEntryCommand,
-        searchCommand
+        searchCommand,
+        clearFilterCommand
     );
     
     // Register privacy dashboard commands
@@ -337,6 +380,8 @@ function initializeExtension(context: vscode.ExtensionContext) {
         
         if (currentHistoryProvider) {
             currentHistoryProvider.addCommand(historyItem);
+            // Update filter context after adding command
+            updateFilterContext();
         }
         
         // Capture output asynchronously
@@ -402,7 +447,14 @@ function initializeExtension(context: vscode.ExtensionContext) {
      */
     const updateStatusBar = () => {
         if (currentHistoryProvider) {
-            statusBarItem.text = `$(${STATUS_BAR_ICON}) ${currentHistoryProvider.getCommandCount()}`;
+            const count = currentHistoryProvider.getCommandCount();
+            const filterText = currentHistoryProvider.getFilterText();
+            if (filterText) {
+                const filtered = currentHistoryProvider.getFilteredHistory().length;
+                statusBarItem.text = `$(${STATUS_BAR_ICON}) ${filtered}/${count} (filtered)`;
+            } else {
+                statusBarItem.text = `$(${STATUS_BAR_ICON}) ${count}`;
+            }
         }
     };
     
@@ -413,7 +465,10 @@ function initializeExtension(context: vscode.ExtensionContext) {
     
     // Update status bar when tree data changes
     if (currentHistoryProvider) {
-        currentHistoryProvider.onDidChangeTreeData(updateStatusBar);
+        currentHistoryProvider.onDidChangeTreeData(() => {
+            updateStatusBar();
+            updateFilterContext();
+        });
     }
 }
 

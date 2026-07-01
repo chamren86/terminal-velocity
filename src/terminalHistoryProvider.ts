@@ -259,6 +259,27 @@ export class TerminalHistoryProvider implements vscode.TreeDataProvider<VSCodeCo
         }
         this.refresh();
     }
+
+    /**
+     * Checks if a filter is currently active
+     * 
+     * @returns True if a filter is applied, false otherwise
+     */
+    public isFilterActive(): boolean {
+        if (!this.filterText) {
+            return false;
+        }
+        return this.filterText.trim().length > 0;
+    }
+
+    /**
+     * Gets the current filter text
+     * 
+     * @returns The current filter text, or empty string if no filter
+     */
+    public getFilterText(): string {
+        return this.filterText || '';
+    }
     
     /**
      * Notifies the view that data has changed
@@ -354,6 +375,15 @@ export class TerminalHistoryProvider implements vscode.TreeDataProvider<VSCodeCo
             vscode.window.showInformationMessage('Filter cleared');
         }
     }
+
+    /**
+     * Gets the filtered history list
+     * 
+     * @returns Array of CommandHistoryItems that match the current filter
+     */
+    public getFilteredHistory(): CommandHistoryItem[] {
+        return this.filteredHistory;
+    }
     
     /**
      * Gets the number of commands in history
@@ -404,5 +434,17 @@ export class TerminalHistoryProvider implements vscode.TreeDataProvider<VSCodeCo
         }
         
         return [];
+    }
+
+    /**
+     * Resets the provider state (for testing purposes)
+     * Clears history and resets filter
+     */
+    public reset(): void {
+        this.history = [];
+        this.filteredHistory = [];
+        this.filterText = '';
+        this.saveHistory();
+        this.refresh();
     }
 }
